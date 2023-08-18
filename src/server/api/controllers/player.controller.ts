@@ -8,7 +8,7 @@ export async function fetchPlayer(username: string) {
       `${env.FACEIT_OPEN_URL}/players?nickname=${username}&game=csgo`,
       {
         headers: {
-          Authorization: "Bearer ff868eaf-14cb-4621-afaf-c2aca0d24412",
+          Authorization: `Bearer ${env.FACEIT_API_KEY}`,
         },
       }
     );

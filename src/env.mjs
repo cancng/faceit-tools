@@ -24,6 +24,7 @@ export const env = createEnv({
     FACEIT_CLIENT_ID: z.string(),
     FACEIT_CLIENT_SECRET: z.string(),
     FACEIT_OPEN_URL: z.string(),
+    FACEIT_API_KEY: z.string(),
   },
 
   /**
@@ -46,6 +47,7 @@ export const env = createEnv({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     FACEIT_CLIENT_ID: process.env.FACEIT_CLIENT_ID,
     FACEIT_CLIENT_SECRET: process.env.FACEIT_CLIENT_SECRET,
-    FACEIT_OPEN_URL: "https://open.faceit.com/data/v4",
+    FACEIT_OPEN_URL: process.env.FACEIT_OPEN_URL,
+    FACEIT_API_KEY: process.env.FACEIT_API_KEY,
   },
 });

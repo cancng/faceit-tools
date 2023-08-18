@@ -15,6 +15,9 @@ export const openFaceitRouter = createTRPCRouter({
     )
     .mutation(async ({ input }) => {
       const playerData = await fetchPlayer(input.username);
+      if (!playerData) {
+        throw new Error("Player data not found.");
+      }
 
       const playerId = playerData.player_id;
 
