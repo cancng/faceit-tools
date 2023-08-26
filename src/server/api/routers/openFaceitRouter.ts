@@ -7,11 +7,22 @@ import {
 } from "../controllers/ban.controller";
 
 export const openFaceitRouter = createTRPCRouter({
+  getPlayer: publicProcedure
+    .input(z.object({ username: z.string() }))
+    .mutation(async ({ input }) => {
+      const playerData = await fetchPlayer(input.username);
+      if (!playerData) {
+        throw new Error("Player data not found.");
+      }
+      return {
+        result: playerData,
+      };
+    }),
   getBans: publicProcedure
     .input(
       z.object({
         username: z.string(),
-      })
+      }),
     )
     .mutation(async ({ input }) => {
       const playerData = await fetchPlayer(input.username);

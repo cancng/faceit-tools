@@ -5,6 +5,7 @@ import {
   Header as MantineHeader,
   Text,
 } from "@mantine/core";
+import Link from "next/link";
 
 function Header() {
   return (
@@ -20,6 +21,8 @@ function Header() {
           <Text tt="uppercase" fw="bold">
             Faceit Tools
           </Text>
+          <Link href="/">Home</Link>
+          <Link href="/ban">Bans</Link>
         </Group>
       </Container>
     </MantineHeader>

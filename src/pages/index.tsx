@@ -1,194 +1,91 @@
 import {
   Alert,
-  AppShell,
   Button,
   Card,
-  Container,
+  Flex,
   List,
+  Skeleton,
   Tabs,
+  Text,
   TextInput,
   ThemeIcon,
   Title,
+  Image,
+  Group,
+  Avatar,
+  Box,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { type NextPage } from "next";
 import { api } from "@/utils/api";
-import Header from "@/components/Header";
 import { z } from "zod";
-import { notifications } from "@mantine/notifications";
-import { useState } from "react";
-import { User, Feather, TimerReset, ShieldCheck } from "lucide-react";
-import {
-  type OperationPayload2,
-  type OperationPayload1,
-} from "../types/operationResponse";
+import Flag from "react-world-flags";
 import dayjs from "dayjs";
+import Layout from "../components/ui/Layout";
+import SubscriptionHeader from "@/components/subscriptionSection/SubscriptionHeader";
+import PlayerCard from "@/components/player/PlayerCard";
 
 const schema = z.object({
   username: z.string().nonempty("Username is required"),
 });
 
+// TODO: change get player from useQuery to useMutation
 const Home: NextPage = () => {
-  const getBansMutation = api.openFaceit.getBans.useMutation({
-    onError(error) {
-      notifications.show({
-        title: "Error",
-        message: error.message || "Something went wrong",
-        color: "red",
-      });
-    },
-  });
   const form = useForm({
     initialValues: {
       username: "",
     },
     validate: zodResolver(schema),
   });
+  const useGetPlayerMutation = api.openFaceit.getPlayer.useMutation();
 
-  const [activeTab, setActiveTab] = useState<string | null>("first");
-
+  const playerData = useGetPlayerMutation.data?.result;
   return (
-    <AppShell header={<Header />}>
-      <Container size="xl">
-        <Title>Ban Checker</Title>
-        <form
-          onSubmit={form.onSubmit((values) => {
-            console.log(values);
-            getBansMutation.mutate({ username: values.username });
-          })}
-        >
+    <Layout>
+      <Title>Home</Title>
+      <form
+        onSubmit={form.onSubmit((values) => {
+          useGetPlayerMutation.mutate({ username: values.username });
+        })}
+      >
+        <Flex>
           <TextInput
             placeholder="Faceit Username"
-            rightSection={
-              <Button type="submit" loading={getBansMutation.isLoading}>
-                Send
-              </Button>
-            }
+            mr="md"
+            w="100%"
             {...form.getInputProps("username")}
           />
-        </form>
+          <Button type="submit" loading={useGetPlayerMutation.isLoading}>
+            Send
+          </Button>
+        </Flex>
+      </form>
 
-        <Tabs value={activeTab} onTabChange={setActiveTab} mt="lg">
-          <Tabs.List mb="lg">
-            <Tabs.Tab value="first">Queue Bans</Tabs.Tab>
-            <Tabs.Tab
-              value="second"
-              onClick={() => {
-                console.log("sheriff bans 👉");
-              }}
-            >
-              Sheriff Bans
-            </Tabs.Tab>
-          </Tabs.List>
-
-          <Tabs.Panel value="first">
-            {getBansMutation.data?.result.queueBans.map((banData) => {
-              const ban = banData as OperationPayload1;
-              return (
-                <Card
-                  key={ban.id}
-                  withBorder
-                  shadow="sm"
-                  padding="sm"
-                  radius="md"
-                  mb="md"
-                >
-                  <List spacing="xs" center pl={"0 !important "}>
-                    <List.Item
-                      icon={
-                        <ThemeIcon color="green" size={32} radius="xl">
-                          <User size={18} />
-                        </ThemeIcon>
-                      }
-                    >
-                      {ban.nickname}
-                    </List.Item>
-                    <List.Item
-                      icon={
-                        <ThemeIcon color="red" size={32} radius="xl">
-                          <Feather size={18} />
-                        </ThemeIcon>
-                      }
-                    >
-                      {ban.type} - {ban.reason}
-                    </List.Item>
-                    <List.Item
-                      icon={
-                        <ThemeIcon color="blue" size={32} radius="xl">
-                          <TimerReset size={18} />
-                        </ThemeIcon>
-                      }
-                    >
-                      {dayjs(ban.banStart).format("DD-MM-YYYY HH:mm:ss")} --{" "}
-                      {dayjs(ban.banEnd).format("DD-MM-YYYY HH:mm:ss")} (
-                      {dayjs(ban.banEnd).diff(ban.banStart, "hours")} hours)
-                    </List.Item>
-                  </List>
-                </Card>
-              );
-            })}
-          </Tabs.Panel>
-          <Tabs.Panel value="second">
-            {getBansMutation.data?.result.sheriffBans.length === 0 ? (
-              <Alert
-                icon={<ShieldCheck />}
-                title="User is not banned"
-                color="teal"
-                variant="filled"
-              >
-                User is not banned currently by FACEIT Admins. Good job!
-              </Alert>
-            ) : (
-              getBansMutation.data?.result.sheriffBans.map((banData, i) => {
-                const ban = banData as OperationPayload2;
-                return (
-                  <Card
-                    key={i}
-                    withBorder
-                    shadow="sm"
-                    padding="sm"
-                    radius="md"
-                    mb="md"
-                  >
-                    <List spacing="xs" center pl={"0 !important "}>
-                      <List.Item
-                        icon={
-                          <ThemeIcon color="green" size={32} radius="xl">
-                            <User size={18} />
-                          </ThemeIcon>
-                        }
-                      >
-                        {ban.nickname}
-                      </List.Item>
-                      <List.Item
-                        icon={
-                          <ThemeIcon color="red" size={32} radius="xl">
-                            <Feather size={18} />
-                          </ThemeIcon>
-                        }
-                      >
-                        {ban.type} - {ban.reason}
-                      </List.Item>
-                      <List.Item
-                        icon={
-                          <ThemeIcon color="blue" size={32} radius="xl">
-                            <TimerReset size={18} />
-                          </ThemeIcon>
-                        }
-                      >
-                        {dayjs(ban.starts_at).format("DD-MM-YYYY HH:mm:ss")} --{" "}
-                        {dayjs(ban.ends_at).format("DD-MM-YYYY HH:mm:ss")} (
-                        {dayjs(ban.ends_at).diff(ban.starts_at, "hours")} hours)
-                      </List.Item>
-                    </List>
-                  </Card>
-                );
-              })
-            )}
-          </Tabs.Panel>
-        </Tabs>
-      </Container>
-    </AppShell>
+      {useGetPlayerMutation.isLoading ? (
+        <Skeleton height={240} mt="xl" />
+      ) : (
+        playerData && (
+          <Card withBorder shadow="sm" padding="sm" radius="md" mb="md" mt="md">
+            <Card.Section>
+              <Box pos="relative">
+                <Image
+                  alt="cover"
+                  src={
+                    playerData.cover_image ||
+                    "https://cdn-frontend.faceit-cdn.net/web/static/media/profile_header.bebdd408.jpg"
+                  }
+                  height="320px"
+                />
+                <Group pos="absolute" bottom={30} left={30}>
+                  <Avatar src={playerData.avatar} size="160px" radius="100%" />
+                  <PlayerCard playerData={playerData} />
+                </Group>
+              </Box>
+            </Card.Section>
+          </Card>
+        )
+      )}
+    </Layout>
   );
 };
 

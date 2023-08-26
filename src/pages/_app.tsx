@@ -1,12 +1,30 @@
 import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { MantineProvider, TypographyStylesProvider } from "@mantine/core";
+import {
+  MantineProvider,
+  MantineThemeOverride,
+  TypographyStylesProvider,
+} from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 
 import { api } from "@/utils/api";
 
-import "@/styles/globals.css";
+const mantineTheme: MantineThemeOverride = {
+  fontFamily: "Play",
+  colorScheme: "dark",
+  colors: {
+    faceit: ["#FF5500"],
+  },
+  globalStyles: (theme) => ({
+    "*, *::before, *::after": {
+      boxSizing: "border-box",
+    },
+    img: {
+      margin: "0!important",
+    },
+  }),
+};
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -17,7 +35,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <MantineProvider
         withGlobalStyles
         withNormalizeCSS
-        theme={{ fontFamily: "Play", colorScheme: "dark" }}
+        inherit
+        theme={mantineTheme}
       >
         <Notifications />
         <TypographyStylesProvider>

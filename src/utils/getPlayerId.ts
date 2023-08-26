@@ -1,4 +1,4 @@
-import { type PlayerData } from "../types/playerData";
+import { type PlayerData } from "@/types/playerData";
 
 function getPlayerId(player: PlayerData) {
   return player.player_id;
