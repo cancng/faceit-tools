@@ -44,8 +44,8 @@ const FaceitPlusLogo = () => {
         ></path>
         <path
           stroke="url(#i__62bSTRmo)"
-          stroke-opacity=".2"
-          stroke-width=".5"
+          strokeOpacity=".2"
+          strokeWidth=".5"
           d="M20 14l-6 5-2-1 8-8 8 8-2 1-6-5z"
         ></path>
         <path
@@ -64,8 +64,8 @@ const FaceitPlusLogo = () => {
         ></path>
         <path
           stroke="url(#m__62bSTRmo)"
-          stroke-opacity=".2"
-          stroke-width=".5"
+          strokeOpacity=".2"
+          strokeWidth=".5"
           d="M20 22l-6 6-2-2 8-7 8 7-2 2-6-6z"
         ></path>
       </g>
@@ -78,9 +78,9 @@ const FaceitPlusLogo = () => {
           y2="41.4"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#732600"></stop>
-          <stop offset="1" stop-color="#260D00"></stop>
-          <stop offset="1" stop-color="#401500"></stop>
+          <stop stopColor="#732600"></stop>
+          <stop offset="1" stopColor="#260D00"></stop>
+          <stop offset="1" stopColor="#401500"></stop>
         </linearGradient>
         <linearGradient
           id="c__62bSTRmo"
@@ -90,8 +90,8 @@ const FaceitPlusLogo = () => {
           y2="36.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FD6E35"></stop>
-          <stop offset="1" stop-color="#F50"></stop>
+          <stop stopColor="#FD6E35"></stop>
+          <stop offset="1" stopColor="#F50"></stop>
         </linearGradient>
         <linearGradient
           id="d__62bSTRmo"
@@ -101,8 +101,8 @@ const FaceitPlusLogo = () => {
           y2="19.9"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="red"></stop>
-          <stop offset="1" stop-color="red" stop-opacity="0"></stop>
+          <stop stopColor="red"></stop>
+          <stop offset="1" stopColor="red" stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           id="f__62bSTRmo"
@@ -112,8 +112,8 @@ const FaceitPlusLogo = () => {
           y2="14.8"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FD6E35"></stop>
-          <stop offset="1" stop-color="#F50"></stop>
+          <stop stopColor="#FD6E35"></stop>
+          <stop offset="1" stopColor="#F50"></stop>
         </linearGradient>
         <linearGradient
           id="g__62bSTRmo"
@@ -123,8 +123,8 @@ const FaceitPlusLogo = () => {
           y2="14.8"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#fff"></stop>
-          <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+          <stop stopColor="#fff"></stop>
+          <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           id="h__62bSTRmo"
@@ -134,8 +134,8 @@ const FaceitPlusLogo = () => {
           y2="11.5"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="red"></stop>
-          <stop offset="1" stop-color="red" stop-opacity="0"></stop>
+          <stop stopColor="red"></stop>
+          <stop offset="1" stopColor="red" stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           id="i__62bSTRmo"
@@ -145,8 +145,8 @@ const FaceitPlusLogo = () => {
           y2="22.7"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#fff"></stop>
-          <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+          <stop stopColor="#fff"></stop>
+          <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           id="j__62bSTRmo"
@@ -156,8 +156,8 @@ const FaceitPlusLogo = () => {
           y2="23.4"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#FD6E35"></stop>
-          <stop offset="1" stop-color="#F50"></stop>
+          <stop stopColor="#FD6E35"></stop>
+          <stop offset="1" stopColor="#F50"></stop>
         </linearGradient>
         <linearGradient
           id="k__62bSTRmo"
@@ -167,8 +167,8 @@ const FaceitPlusLogo = () => {
           y2="23.4"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#fff"></stop>
-          <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+          <stop stopColor="#fff"></stop>
+          <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           id="l__62bSTRmo"
@@ -178,8 +178,8 @@ const FaceitPlusLogo = () => {
           y2="20"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="red"></stop>
-          <stop offset="1" stop-color="red" stop-opacity="0"></stop>
+          <stop stopColor="red"></stop>
+          <stop offset="1" stopColor="red" stopOpacity="0"></stop>
         </linearGradient>
         <linearGradient
           id="m__62bSTRmo"
@@ -189,8 +189,8 @@ const FaceitPlusLogo = () => {
           y2="31.3"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#fff"></stop>
-          <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+          <stop stopColor="#fff"></stop>
+          <stop offset="1" stopColor="#fff" stopOpacity="0"></stop>
         </linearGradient>
         <filter
           id="a__62bSTRmo"
@@ -198,10 +198,10 @@ const FaceitPlusLogo = () => {
           height="34.5"
           x="4"
           y="3"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
           <feBlend
             in="SourceGraphic"
             in2="BackgroundImageFix"
@@ -229,10 +229,10 @@ const FaceitPlusLogo = () => {
           height="22.7"
           x="10"
           y="8"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
           filterUnits="userSpaceOnUse"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
           <feColorMatrix
             in="SourceAlpha"
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
