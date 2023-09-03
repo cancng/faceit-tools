@@ -1,36 +1,84 @@
 export interface PlayerData {
-  player_id: string;
-  nickname: string;
+  result: string;
+  payload: Payload;
+}
+
+export interface Payload {
+  id: string;
+  about: string;
+  activated_at: Date;
+  active_team_id: string;
   avatar: string;
   country: string;
-  cover_image: string;
-  platforms: {
-    steam: string;
-  };
-  games: {
-    csgo: {
-      region: string;
-      game_player_id: string;
-      skill_level: number;
-      faceit_elo: number;
-      game_player_name: string;
-      skill_level_label: string;
-      regions: Record<string, unknown>;
-      game_profile_id: string;
-    };
-  };
-  settings: {
-    language: string;
-  };
-  friends_ids: string[];
-  new_steam_id: string;
-  steam_id_64: string;
-  steam_nickname: string;
+  cover_image_url: string;
+  created_at: Date;
+  created_by: string;
+  flag: string;
+  friends: string[];
+  games: Games;
+  gender: string;
+  guest_info: object;
+  matching_sound: string;
   memberships: string[];
-  faceit_url: string;
-  membership_type: string;
-  cover_featured_image: string;
-  infractions: Record<string, unknown>;
+  nickname: string;
+  phone_verified: boolean;
+  registration_status: string;
+  settings: Settings;
+  socials: Socials;
+  status: string;
+  streaming: Streaming;
+  tags: string[];
+  updated_by: string;
+  user_type: string;
   verified: boolean;
-  activated_at: string;
+  version: number;
+  platforms: Platforms;
+}
+
+export interface Games {
+  csgo: Csgo;
+}
+
+export interface Csgo {
+  game_id: string;
+  game_name: string;
+  faceit_elo: number;
+  region: string;
+  region_updated_at: Date;
+  skill_level: number;
+  skill_level_label: string;
+  tags: string[];
+  elo_refreshed_by_user_at: Date;
+}
+
+// export interface GuestInfo {}
+
+export interface Platforms {
+  steam: Steam;
+}
+
+export interface Steam {
+  id: string;
+  nickname: string;
+  id64: string;
+}
+
+export interface Settings {
+  language: string;
+}
+
+export interface Socials {
+  twitter: IValue;
+  youtube: IValue;
+  facebook: IValue;
+}
+
+export type PartialSocials = Partial<Socials>;
+
+export interface IValue {
+  value: string;
+}
+
+export interface Streaming {
+  twitch_id: string;
 }

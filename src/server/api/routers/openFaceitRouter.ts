@@ -1,10 +1,10 @@
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
-import { fetchPlayer } from "../controllers/player.controller";
 import {
   fetchQueueBans,
   fetchSheriffBans,
 } from "../controllers/ban.controller";
+import { fetchPlayer } from "../controllers/player.controller";
+import { createTRPCRouter, publicProcedure } from "../trpc";
 
 export const openFaceitRouter = createTRPCRouter({
   getPlayer: publicProcedure
@@ -30,7 +30,7 @@ export const openFaceitRouter = createTRPCRouter({
         throw new Error("Player data not found.");
       }
 
-      const playerId = playerData.player_id;
+      const playerId = playerData.id;
 
       const sheriffBansData = await fetchSheriffBans(playerId);
       const queueBansData = await fetchQueueBans(playerId);

@@ -1,35 +1,27 @@
+import PlayerCard from "@/components/player/PlayerCard";
+import { api } from "@/utils/api";
 import {
-  Alert,
+  Avatar,
+  Box,
   Button,
   Card,
   Flex,
-  List,
-  Skeleton,
-  Tabs,
-  Text,
-  TextInput,
-  ThemeIcon,
-  Title,
-  Image,
   Group,
-  Avatar,
-  Box,
+  Image,
+  Skeleton,
+  TextInput,
+  Title,
 } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
+import { notifications } from "@mantine/notifications";
 import { type NextPage } from "next";
-import { api } from "@/utils/api";
 import { z } from "zod";
-import Flag from "react-world-flags";
-import dayjs from "dayjs";
 import Layout from "../components/ui/Layout";
-import SubscriptionHeader from "@/components/subscriptionSection/SubscriptionHeader";
-import PlayerCard from "@/components/player/PlayerCard";
 
 const schema = z.object({
   username: z.string().nonempty("Username is required"),
 });
 
-// TODO: change get player from useQuery to useMutation
 const Home: NextPage = () => {
   const form = useForm({
     initialValues: {
@@ -37,7 +29,15 @@ const Home: NextPage = () => {
     },
     validate: zodResolver(schema),
   });
-  const useGetPlayerMutation = api.openFaceit.getPlayer.useMutation();
+  const useGetPlayerMutation = api.openFaceit.getPlayer.useMutation({
+    onError: (error) => {
+      notifications.show({
+        title: "Error",
+        message: error.message || "Something went wrong",
+        color: "red",
+      });
+    },
+  });
 
   const playerData = useGetPlayerMutation.data?.result;
   return (
@@ -71,7 +71,7 @@ const Home: NextPage = () => {
                 <Image
                   alt="cover"
                   src={
-                    playerData.cover_image ||
+                    playerData.cover_image_url ||
                     "https://cdn-frontend.faceit-cdn.net/web/static/media/profile_header.bebdd408.jpg"
                   }
                   height="320px"

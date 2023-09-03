@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { createEnv } from "@t3-oss/env-nextjs";
+import { z } from "zod";
 
 export const env = createEnv({
   /**
@@ -25,6 +25,7 @@ export const env = createEnv({
     FACEIT_CLIENT_SECRET: z.string(),
     FACEIT_OPEN_URL: z.string(),
     FACEIT_API_KEY: z.string(),
+    FACEIT_API_KEY2: z.string(),
   },
 
   /**
@@ -49,5 +50,6 @@ export const env = createEnv({
     FACEIT_CLIENT_SECRET: process.env.FACEIT_CLIENT_SECRET,
     FACEIT_OPEN_URL: process.env.FACEIT_OPEN_URL,
     FACEIT_API_KEY: process.env.FACEIT_API_KEY,
+    FACEIT_API_KEY2: process.env.FACEIT_API_KEY,
   },
 });

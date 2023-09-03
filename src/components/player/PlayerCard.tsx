@@ -1,11 +1,11 @@
 import SubscriptionHeader from "@/components/subscriptionSection/SubscriptionHeader";
-import { Box, Flex, Text, Title } from "@mantine/core";
-import Flag from "react-world-flags";
-import dayjs from "dayjs";
 import { type PlayerData } from "@/types/playerData";
+import { Box, Flex, Text, Title } from "@mantine/core";
+import dayjs from "dayjs";
+import Flag from "react-world-flags";
 
 interface Props {
-  playerData: PlayerData;
+  playerData: PlayerData['payload'];
 }
 
 function PlayerCard({ playerData }: Props) {
