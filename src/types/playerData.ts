@@ -1,9 +1,9 @@
 export interface PlayerData {
   result: string;
-  payload: Payload;
+  payload: PlayerDataPayload;
 }
 
-export interface Payload {
+export interface PlayerDataPayload {
   id: string;
   about: string;
   activated_at: Date;
