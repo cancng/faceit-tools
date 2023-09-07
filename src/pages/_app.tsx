@@ -1,22 +1,25 @@
-import { type AppType } from "next/app";
-import { type Session } from "next-auth";
-import { SessionProvider } from "next-auth/react";
 import {
   MantineProvider,
-  MantineThemeOverride,
   TypographyStylesProvider,
+  type MantineThemeOverride,
 } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
+import { type Session } from "next-auth";
+import { SessionProvider } from "next-auth/react";
+import { type AppType } from "next/app";
 
 import { api } from "@/utils/api";
 
 const mantineTheme: MantineThemeOverride = {
   fontFamily: "Play",
+  headings: {
+    fontFamily: "Play",
+  },
   colorScheme: "dark",
   colors: {
     faceit: ["#FF5500"],
   },
-  globalStyles: (theme) => ({
+  globalStyles: (_theme) => ({
     "*, *::before, *::after": {
       boxSizing: "border-box",
     },
