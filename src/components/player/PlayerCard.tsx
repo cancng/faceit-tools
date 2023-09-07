@@ -1,14 +1,18 @@
 import SubscriptionHeader from "@/components/subscriptionSection/SubscriptionHeader";
 import { type PlayerData } from "@/types/playerData";
+import { type EloAndVerificationPayload } from "@/types/playerEloAndVerification";
 import { Box, Flex, Text, Title } from "@mantine/core";
 import dayjs from "dayjs";
 import Flag from "react-world-flags";
+import ClassicVerificationBadge from "../svg/ClassicVerificationBadge";
+import VIPVerificationBadge from "../svg/VIPVerificationBadge";
 
 interface Props {
-  playerData: PlayerData['payload'];
+  playerData: PlayerData["payload"];
+  eloAndVerificationData: EloAndVerificationPayload | undefined;
 }
 
-function PlayerCard({ playerData }: Props) {
+function PlayerCard({ playerData, eloAndVerificationData }: Props) {
   return (
     <Box
       sx={{
@@ -19,7 +23,7 @@ function PlayerCard({ playerData }: Props) {
     >
       <SubscriptionHeader memberships={playerData.memberships} />
 
-      <Box mb={4}>
+      <Flex mb={4} align="center">
         <Title
           order={5}
           m={"0!important"}
@@ -30,7 +34,17 @@ function PlayerCard({ playerData }: Props) {
         >
           {playerData.nickname}
         </Title>
-      </Box>
+        {eloAndVerificationData?.verificationLevel == 2 && (
+          <Box display="flex" ml="8px">
+            <ClassicVerificationBadge />
+          </Box>
+        )}
+        {eloAndVerificationData?.verificationLevel == 3 && (
+          <Box display="flex" ml="8px">
+            <VIPVerificationBadge />
+          </Box>
+        )}
+      </Flex>
       <Flex align="center">
         <Flag
           code={playerData.country}
